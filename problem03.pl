@@ -12,6 +12,7 @@ for(my $i = 2; $i <= $currentLimit; $i++) {
 	if($currentLimit % $i == 0) {
 		$currentLimit = $currentLimit / $i;
 		$primeHash{$i} = $currentLimit;
+		print $currentLimit . "\n";
 		$i = 1;
 	}
 }

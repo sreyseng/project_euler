@@ -15,10 +15,13 @@ sub isPrime {
 	my $number = $_[0];
 
 	for(my $i = 0; $i <= sqrt($number); $i++) {
+		print $i . " ";
 		if($number % $primeList[$i] == 0) {
+			print "\n";
 			return 0;
 		}
 	}
+	
 	return 1;	
 }
 
