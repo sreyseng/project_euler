@@ -1,19 +1,24 @@
 #!/usr/bin/perl
 use Math::BigInt;
 
-print "Please enter a number: ";
-chomp(my $number = <STDIN>);
+print "Please enter in the term: ";
+chomp(my $digit = <STDIN>);
 
-my $total = Math::BigInt->new(2);
-for(my $i = 1; $i< $number; $i++) {
-	$total *= 2;
+my $length = 0;
+my $position = 2;
+my $first = Math::BigInt->new(1);
+my $second = Math::BigInt->new(1);
+my $temp = Math::BigInt->new(0);
+
+while($length != $digit) {
+	$temp = $first + $second;
+	my @count = split(//, $temp);
+	$length = scalar @count;
+	$position++;
+	if ($length == $digit) {
+		print "The Position is: $position\n";
+	} else {
+		$first = $second;
+		$second = $temp;
+	}
 }
-
-my @splitTotal = split(//, $total);
-
-my $sum = 0;
-for(my $i = 0; $i <= $#splitTotal; $i++) {
-	$sum += $splitTotal[$i];
-}
-
-print "TOTAL: $total\n SPLIT: @splitTotal SUM: $sum\n";
