@@ -1,16 +1,13 @@
 #!/usr/bin/perl
+use Math::BigInt;
+print "Please enter a number: ";
+chomp(my $number = <STDIN>);
 
-# print "Please enter a number: ";
-# chomp(my $number = <STDIN>);
-
-# my $total = 1;
-# for(my $i = $number; $i >=2; $i--) {
-# 	$total = $total * $i;
-# }
-# printf("%f", $total);
-# print "\n";
-#number obtained from: http://www.calculatorsoup.com/calculators/discretemathematics/factorials.php
-my @totalSplit = split(//, "93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864");
+my $total = Math::BigInt->new(1);
+for(my $i = $number; $i >=2; $i--) {
+	$total = $total * $i;
+}
+my @totalSplit = split(//, $total);
 print @totalSplit;
 my $sum = 0;
 for(my $i = 0; $i <= $#totalSplit; $i++) {
