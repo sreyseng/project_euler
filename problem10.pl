@@ -12,7 +12,6 @@ for (my $value = 6; $value < $input; $value++) {
 	}
 }
 
-
 foreach (@primeList) {
 	$sum += $_;
 }
