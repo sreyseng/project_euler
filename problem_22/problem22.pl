@@ -3,8 +3,11 @@
 use 5.010;
 use strict;
 use warnings;
+use Time::HiRes qw/time/;
 
+my $startTime = time;
 
+#Alphabets and their position scores in a hash
 my %alphabet_hash = (
 "A" => 1,
 "B" => 2,
@@ -33,19 +36,25 @@ my %alphabet_hash = (
 "Y" => 25,
 "Z" => 26
 );
+#read in data file to one big string
 my $data_file = "names.txt";
 open(FILE, $data_file) || die("Could not open file! Ensure that file $data_file exists in working directory...");my $blob = <FILE>;close(FILE);
-$blob =~ s/"//g;
-my @names_array = split(',', $blob);
-@names_array = sort(@names_array);
-my $count = 1;
-my %name_hash;foreach my $name (@names_array) {
-    $name_hash{$count} = $name;
-    $count++;}
 
-my @colin = ("C", "O", "L","I", "N");
-print "@colin";
-my $sum = 0;
-foreach my $letter (@colin) {
-    $sum = $sum + $alphabet_hash{$letter};}
-print $sum;
+#strip big string of quotes$blob =~ s/"//g;
+
+#split big string into array of names
+my @names_array = split(',', $blob);
+
+#sort the array of names in alphabetical order
+@names_array = sort(@names_array);my $sum = 0;
+my $count = 1;
+foreach my $name (@names_array) { #for each name in the array of names
+    my @name_array = split('', $name); # split the name into letters
+    
+    my $sub_total = 0;
+    foreach my $letter (@name_array) { #for each letter
+        $sub_total = $sub_total + $alphabet_hash{$letter}; # calculate the sub total    }
+    $sum = $sum + ($sub_total * $count); #calculate total sum so far
+    $count++;}
+my $endTime = time;print "Total name scores: $sum" . "\n";
+print $endTime - $startTime . "\n";
